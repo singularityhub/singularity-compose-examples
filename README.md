@@ -15,3 +15,4 @@ The following examples are provided in other repositories, and linked here. If y
 have an example to add to the list, please [share](https://www.github.com/singularityhub/singularity-compose-examples/issues)!
 
  - [django-nginx-upload](https://www.github.com/singularityhub/singularity-compose-example) deploys two containers (nginx, app) to run a Django application with the nginx upload module.
+ - [singularity-compose-simple](https://www.github.com/singularityhub/singularity-compose-simple): A single container example with the same django-nginx-upload, also used in testing.
