@@ -4,8 +4,6 @@ instances:
   mongodb:
     build:
       context: ./mongodb
-      options:
-        - fakeroot
     volumes:
       - ./mongodb/data:/data
     post:
