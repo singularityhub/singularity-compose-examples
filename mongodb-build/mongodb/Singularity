@@ -1,0 +1,5 @@
+Bootstrap:docker
+From:mongo
+
+%startscript
+mongod

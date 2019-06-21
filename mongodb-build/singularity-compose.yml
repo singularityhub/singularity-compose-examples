@@ -1,0 +1,13 @@
+version: "1.0"
+instances:
+
+  mongodb:
+    build:
+      context: ./mongodb
+      options:
+        - fakeroot
+    volumes:
+      - ./mongodb/data:/data
+    post:
+      command: ["/bin/bash", "./mongodb/run_post.sh"]
+
