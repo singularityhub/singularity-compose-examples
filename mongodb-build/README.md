@@ -180,3 +180,13 @@ $ col.find({"name": {"$regex": "Pizza"}})
 ```
 
 And beyond! Read more about querying [here](https://docs.mongodb.com/manual/reference/operator/query/).
+If you are using scompose version 0.0.15 or later, there is a run command, meaning that
+you can define a `%runscript` section (perhaps to interact with data) and then
+bring up and run your entire shabang with just two commands:
+
+```bash
+$ singularity-compose up
+$ singularity-compose run mongodb
+```
+
+Have fun!
