@@ -1,0 +1,9 @@
+version: "1.0"
+instances:
+
+  mongodb:
+    image: docker://mongo
+    volumes:
+      - ./mongodb/data:/data
+    post:
+      command: ["/bin/bash", "./mongodb/run_post.sh"]
