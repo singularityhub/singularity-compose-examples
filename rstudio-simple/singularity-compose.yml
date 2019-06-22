@@ -1,0 +1,24 @@
+version: "1.0"
+instances:
+
+  rstudio:
+    build:
+      context: ./rstudio
+    volumes:
+      - ./rstudio/:/home/rstudio
+      - ./rstudio/rserver.conf/:/etc/rstudio/rserver.conf
+      - ./rstudio/resolv.conf/:/etc/resolv.conf
+    ports:
+      - 8787:8787
+
+  nginx:
+    build:
+      context: ./nginx
+      options:
+        - fakeroot
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/run/nginx.pid:/var/run/nginx.pid
+      - ./nginx/cache:/var/cache/nginx
+    ports:
+      - 80:80

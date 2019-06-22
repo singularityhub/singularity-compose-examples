@@ -1,4 +1,6 @@
 mongodb/data
+restaurant.json
+etc.hosts
 mongodb/dump
 mongodb/venmo.tar.xz
 *.sif

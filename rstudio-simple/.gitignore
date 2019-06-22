@@ -1,0 +1,6 @@
+.Rhistory
+etc.hosts
+certs/localhost
+*.sif
+.rstudio
+.Rproj.user
