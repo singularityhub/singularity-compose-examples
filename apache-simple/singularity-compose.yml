@@ -1,0 +1,10 @@
+version: "1.0"
+instances:
+
+  httpd:
+    build:
+      context: httpd
+    ports:
+      - "80:80"
+    volumes:
+      - ./httpd/logs:/usr/local/apache2/logs
