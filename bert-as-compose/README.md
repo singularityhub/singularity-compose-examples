@@ -3,7 +3,7 @@
 This is an example that uses [singularity-compose](https://www.github.com/singularityhub/singularity-compose)
 to bring up instances to run [bert as a service](https://github.com/hanxiao/bert-as-service).
 
-![bert.png](bert.png)
+![img/bert.png](img/bert.png)
 
 ## Singularity Compose
 
