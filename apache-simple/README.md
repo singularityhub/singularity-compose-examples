@@ -47,6 +47,7 @@ AH00558: httpd: Could not reliably determine the server's fully qualified domain
 Check to see it running!
 
 ```bash
+$ singularity-compose ps
 INSTANCES  NAME PID     IMAGE
 1         httpd	20149	httpd.sif
 ```

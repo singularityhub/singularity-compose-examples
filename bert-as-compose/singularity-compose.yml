@@ -1,0 +1,15 @@
+version: "1.0"
+instances:
+
+  server:
+    build:
+      context: ./server
+      recipe: Singularity  # change to Singularity.gpu to use gpu
+    ports:
+      - "5555:5555"
+      - "5556:5556"
+    volumes:
+      - ./model:/model
+  client:
+    build:
+      context: ./client
