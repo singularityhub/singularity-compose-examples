@@ -20,6 +20,21 @@ $ git clone https://www.github.com/singularityhub/singularity-compose-examples
 $ cd singularity-compose-examples/bert-as-a-service
 ```
 
+## Environment
+
+To briefly show you, we set the number of workers for the server to be the nproc
+on your host. We also ensure that the temporary socket files are written to /tmp,
+
+```bash
+%environment
+export NUM_WORKER=`nproc`
+export ZEROMQ_SOCK_TMP_DIR=/tmp/
+```
+
+Without this second export, they would all be written to the $PWD. If you are
+unable to use /tmp, or want to customize this behavior (or the number of processes)
+you can of course change these variables before building.
+
 ## Build Containers
 
 If you are working on a machine without gpu, you don't need to edit the configuration.
@@ -108,7 +123,7 @@ I:VENTILATOR:[__i:_ru:164]:all set, ready to serve request!
 
 Great! Now let's shell into the client and interact with our server.
 
-## Shell Inside Client
+### Shell Inside Client
 
 ```bash
 $ singularity-compose shell client
@@ -167,7 +182,7 @@ Woohoo!
 So from here you likely will want to choose a pre-trained model of interest,
 and then write your own scripts. I would personally start with the [tutorial](https://github.com/hanxiao/bert-as-service#book-tutorial) to figure out next steps.
 
-## Cleaning Up
+### Cleaning Up
 
 When you are finished, you can bring everything down:
 
@@ -175,4 +190,31 @@ When you are finished, you can bring everything down:
 $ singularity-compose down
 Stopping (instance:server)
 Stopping (instance:client)
+```
+
+## Alternative Usage
+
+The nice thing about "bert-as-service" is that you can interact with the server
+from any sort of client, so you don't technically need to start the second client
+instance. For example, here is a configuration that will handle just starting
+the server:
+
+```yaml
+version: "1.0"
+instances:
+  server:
+    build:
+      context: ./server
+      recipe: Singularity  # change to Singularity.gpu to use gpu
+    ports:
+      - "5555:5555"
+      - "5556:5556"
+    volumes:
+      - ./model:/model
+```
+
+And then we can install bert-as-service on our host machine:
+
+```bash
+$ pip install bert-as-service
 ```

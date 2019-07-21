@@ -10,6 +10,6 @@ instances:
       - "5556:5556"
     volumes:
       - ./model:/model
-  client:
-    build:
+  client:                 # You can remove the client to interact from the host
+    build:                # pip install bert-as-service, interact with localhost
       context: ./client
