@@ -1,0 +1,5 @@
+*.sif
+static/
+images/
+migrations
+__pycache__
