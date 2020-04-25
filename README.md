@@ -6,6 +6,8 @@ example that is used during testing, see [singularity-compose-simple](https://gi
 
 ## Examples
 
+ - [apache-simple](apache-simple): A simple example running an apache webserver.
+ - [jupyter-simple](jupyter-simple): A jupyter notebook run via a Singularity container.
  - [mongodb-pull](mongodb-pull) a basic mongodb example that runs mongodb as a pull, and requires the user to start the service.
  - [mongodb-build](mongodb-build) the same example with a smaller database, that builds using sudo, fakeroot, or remote (depending on how you set it up).
  - [bert-as-compose](bert-as-compose) using an NLP model developed by Google with Singularity.

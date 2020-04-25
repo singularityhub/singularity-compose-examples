@@ -1,0 +1,12 @@
+version: "1.0"
+instances:
+
+  jupyter:
+    build:
+      context: ./jupyter
+      options:
+        - fakeroot
+    volumes:
+      - ./jupyter/notebooks:/opt/notebooks
+    ports:
+      - 8888:8888
