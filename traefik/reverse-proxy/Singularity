@@ -1,0 +1,5 @@
+Bootstrap: docker
+From: traefik:v2.3
+
+%startscript
+/usr/local/bin/traefik --api.insecure=true --providers.docker

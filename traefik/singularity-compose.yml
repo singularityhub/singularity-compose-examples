@@ -1,0 +1,14 @@
+version: "1.0"
+instances:
+
+  reverse-proxy:
+    build:
+      context: reverse-proxy
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
