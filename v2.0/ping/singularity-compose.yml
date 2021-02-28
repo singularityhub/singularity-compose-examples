@@ -1,0 +1,28 @@
+version: "2.0"
+instances:
+  alp1:
+    build:
+      context: ./
+      options:
+        - fakeroot
+    ports:
+      - "1025:1025"
+    start:
+      options:
+       - fakeroot
+    exec:
+      options: 
+        - "env-file=myvars.env"
+      command: printenv SUPERHERO
+  alp2:
+    build:
+      context: ./
+      options:
+        - fakeroot
+    ports:
+      - "1026:1026"
+    start:
+      options:
+       - fakeroot
+    depends_on:
+      - alp1
