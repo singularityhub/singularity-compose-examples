@@ -57,19 +57,23 @@ commands):
 ```bash
 $ singularity-compose --debug up -d
 Creating alp1
-DEBUG singularity instance start --fakeroot --net --network-args "portmap=1025:1025/tcp" --network-args "IP=10.22.0.2" --hostname alp1 --writable-tmpfs /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/alp1.sif alp1 
+DEBUG singularity instance start --bind /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/resolv.conf:/etc/resolv.conf --bind /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/etc.hosts:/etc/hosts --fakeroot --net --network-args "portmap=1025:1025/tcp" --network-args "IP=10.22.0.2" --hostname alp1 --writable-tmpfs /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/alp1/alp1.sif alp1 
 WARNING: Disabling --writable-tmpfs as it can't be used in conjunction with underlay
 
 DEBUG singularity exec --env-file=myvars.env instance://alp1 printenv SUPERHERO
 PANCAKEMAN
 
 Creating alp2
-DEBUG singularity instance start --fakeroot --net --network-args "portmap=1026:1026/tcp" --network-args "IP=10.22.0.3" --hostname alp2 --writable-tmpfs /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/alp2.sif alp2 
+DEBUG singularity instance start --bind /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/resolv.conf:/etc/resolv.conf --bind /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/etc.hosts:/etc/hosts --fakeroot --net --network-args "portmap=1026:1026/tcp" --network-args "IP=10.22.0.3" --hostname alp2 --writable-tmpfs /home/vanessa/Desktop/Code/singularity-compose-examples/v2.0/ping/alp2/alp2.sif alp2 
 WARNING: Disabling --writable-tmpfs as it can't be used in conjunction with underlay
+
+DEBUG singularity run  instance://alp2 
+This shows the alp2 example being run after creation
 ```
 
 In the above, we see that the exec works because it's printing the environment variable we provided.
-We can now test the instances. They should be able to interact with one another.
+The second instance (alp2) has a runscript provided, so the empty run section is a signal to use it.
+We can also add args to run and options. We can now test the instances. They should be able to interact with one another.
 
 ```bash
 $ singularity exec instance://alp2 ping -c 2 `singularity instance list | grep alp1 | grep -o '10.* '`

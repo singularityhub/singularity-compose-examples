@@ -2,7 +2,7 @@ version: "2.0"
 instances:
   alp1:
     build:
-      context: ./
+      context: ./alp1
       options:
         - fakeroot
     ports:
@@ -16,7 +16,7 @@ instances:
       command: printenv SUPERHERO
   alp2:
     build:
-      context: ./
+      context: ./alp2
       options:
         - fakeroot
     ports:
@@ -24,5 +24,6 @@ instances:
     start:
       options:
        - fakeroot
+    run: []
     depends_on:
       - alp1
