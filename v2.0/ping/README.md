@@ -1,6 +1,6 @@
 # Ping
 
-This is the simpest example for Singularity Compose to generate two containers
+This is the simplest example for Singularity Compose to generate two containers
 with an alpine base, and then shell into one to ping the other.
 You'd first want to build the containers:
 
@@ -51,8 +51,15 @@ network configuration at `/usr/local/etc/singularity/network/40_fakeroot.conflis
 
 See [here](https://sylabs.io/guides/3.7/user-guide/cli/singularity_config_fakeroot.html) for
 more details. Otherwise, you can remove the "start" sections and the client
-will ask you for sudo. Once this is done, bring them up (debug is used to show
-commands):
+will ask you for sudo. If you have a firewall that has rules on the router, you
+might need to configure the firewall public zone to add IP masquerading as follows:
+
+```bash
+sudo firewall-cmd --add-masquerade --zone=public --permanent
+sudo firewall-cmd --reload
+```
+
+For a typical user, it's unlikely you'll need to do this. Once this is done, bring them up (debug is used to show commands):
 
 ```bash
 $ singularity-compose --debug up -d
