@@ -1,0 +1,23 @@
+version: "2.0"
+
+instances:
+
+  alp:
+    build:
+      context: .
+      options:
+        - fakeroot
+
+    # note that we bind to have writable
+    volumes:
+      - ./:/data
+    start:
+      options:
+        - e
+        - C
+      args: ["touch", "file1.txt"]
+    exec:
+      options:
+        - e
+        - C
+      command: "ls"
