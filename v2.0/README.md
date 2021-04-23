@@ -5,3 +5,4 @@ Basically, it adds groups for start (arguments and options) along with exec and 
 
  - [ping](ping): A basic example to show network communication between two instances.
  - [start-args](start-args): Test for start arguments.
+ - [code-server](code-server): Demo for using code-server (VS Code) via Singularity Compose.

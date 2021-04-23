@@ -1,0 +1,18 @@
+version: "2.0"
+
+instances:
+
+  codeserver:
+    build:
+      context: .
+      options:
+        - fakeroot
+
+    # See https://hub.docker.com/r/linuxserver/code-server
+    # put environment variables in this file
+    volumes:
+      - ./env_file.sh:/.singularity.d/env/env_file.sh
+      #- /path/to/appdata/config:/config
+    ports:
+      - "8443:8443"
+      - "8080:8080"
