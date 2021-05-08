@@ -1,0 +1,12 @@
+version: "2.0"
+
+instances:
+
+  deephyperx:
+    build:
+      context: .
+      options:
+        - fakeroot
+
+    ports:
+      - "9999:8097"
