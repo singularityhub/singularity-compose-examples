@@ -4,11 +4,10 @@ instances:
     image: docker://umids/jupyterlab
     volumes:
        - ./work:/usr/local/share/jupyter/lab/settings/
-    start:
-      background: true
     ports:
       - 8888:8888
-    run: []
+    run:
+      background: true
   second:
     build:
       context: ./second
