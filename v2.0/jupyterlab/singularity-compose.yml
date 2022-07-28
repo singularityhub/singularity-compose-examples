@@ -1,0 +1,17 @@
+version: "2.0"
+instances:
+  jupyter:
+    image: docker://umids/jupyterlab
+    volumes:
+       - ./work:/usr/local/share/jupyter/lab/settings/
+    start:
+      background: true
+    ports:
+      - 8888:8888
+    run: []
+  second:
+    build:
+      context: ./second
+    run: []
+    depends_on:
+      - jupyter
