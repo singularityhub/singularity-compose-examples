@@ -1,0 +1,9 @@
+BootStrap:docker
+From:redis:latest
+
+%startscript
+    # Important - you need to run this in the container to get the envar
+    redis-server --bind 0.0.0.0 --requirepass ${REDIS_PASSWORD}
+
+%runscript
+    exec /usr/local/bin/docker-entrypoint.sh "$@"

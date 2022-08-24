@@ -1,0 +1,22 @@
+version: "2.0"
+instances:
+  cg-cache:
+    name: redis
+    run:
+      background: true
+    build:
+      context: .
+      recipe: redis.def
+    start:
+      background: true
+    volumes:
+      - ./env-file.sh:/.singularity.d/env/env-file.sh
+    network:
+      enable: true
+      allocate_ip: true
+
+      # If network args are provided, none is not used
+      args:
+        - '"portmap=6379:6379/tcp"'
+      ports:
+        - 6379:6379
