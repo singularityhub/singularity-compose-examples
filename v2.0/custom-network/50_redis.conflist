@@ -1,10 +1,10 @@
 {
     "cniVersion": "0.4.0",
-    "name": "bridge",
+    "name": "redis",
     "plugins": [
         {
             "type": "bridge",
-            "bridge": "sbr0",
+            "bridge": "srr0",
             "isGateway": true,
             "ipMasq": true,
             "ipam": {
