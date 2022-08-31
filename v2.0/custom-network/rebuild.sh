@@ -2,21 +2,32 @@
 
 set -eo pipefail
 
-echo "[1/6] stopping existing instance"
-sudo singularity instance stop redis || true
+echo "[1/8] stopping existing instance"
+singularity-compose stop || true
+
+echo "[2/8] copy config to usr folder"
+sudo cp 50_redis.conflist /usr/local/etc/singularity/network/50_redis.conflist
 
 # (docker-compose build --no-cache equivalent) #OPTIONAL
-echo "[2/6] cleaning cache and old image"
+echo "[3/8] cleaning cache and old image"
 singularity cache clean -f || true
 
-echo "[3/6] removing old sif image" #OPTIONAL
+echo "[4/8] removing old sif image" #OPTIONAL
 rm -f redis.sif
 
-echo "[4/6] building sif image"
-sudo singularity build redis.sif redis.def || true
+echo "[5/8] removing etc.hosts and resolv.conf"
+rm -f etc.hosts
+rm -f resolv.conf
 
-echo "[5/6] spinning up a new redis instance"
-sudo singularity instance start --hostname redis --writable-tmpfs --net --network-args "portmap=6379:6379/tcp" $PWD/redis.sif redis
+echo "[7/8] building new instance"
+singularity-compose build
 
-echo "[6/6] launching redis server in background"
-sudo singularity exec instance://redis redis-server --bind 0.0.0.0 --requirepass ThisIsNotAStrongPassword! &
+echo "[7/8] running singularity-compose"
+singularity-compose --debug up -d
+
+echo "[8/8] show instances"
+singularity-compose ps
+
+printf "\n"
+echo "NOTE: to recover original configuration setup and delete new configuration run:"
+echo "sudo rm -f /usr/local/etc/singularity/network/50_redis.conflist"

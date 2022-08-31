@@ -14,9 +14,9 @@ instances:
     network:
       enable: true
       allocate_ip: true
-
+      type: redis
       # If network args are provided, none is not used
-      args:
-        - '"portmap=6379:6379/tcp"'
+      #args:
+      #  - '"portmap=6379:6379/tcp"'
       ports:
         - 6379:6379
